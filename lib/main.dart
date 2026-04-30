@@ -4,7 +4,6 @@ import 'package:path/path.dart' as p; // Pakai prefix 'p' untuk menghindari erro
 
 void main() => runApp(const HabitrackerApp());
 
-// --- 1. STATELESS WIDGET (Root Aplikasi) ---
 class HabitrackerApp extends StatelessWidget {
   const HabitrackerApp({super.key});
 
@@ -15,7 +14,6 @@ class HabitrackerApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: true,
-        // Tema Merah Classy
         colorScheme: ColorScheme.fromSeed(
           seedColor: const Color(0xFFB71C1C),
           primary: const Color(0xFFB71C1C),
@@ -32,7 +30,6 @@ class HabitrackerApp extends StatelessWidget {
   }
 }
 
-// --- 2. MODEL DATA ---
 class Habit {
   final int? id;
   final String name;
@@ -48,7 +45,6 @@ class Habit {
       );
 }
 
-// --- 3. DATABASE HELPER ---
 class DatabaseHelper {
   static Database? _database;
 
@@ -116,8 +112,7 @@ class _HabitTrackerScreenState extends State<HabitTrackerScreen> {
       await _dbHelper.insertHabit(Habit(name: _controller.text));
       _controller.clear();
       _refreshData();
-      if (mounted) Navigator.pop(context); // Error BuildContext teratasi
-    }
+      if (mounted) Navigator.pop(context);
   }
 
   void _toggleHabit(Habit habit) async {
@@ -150,7 +145,7 @@ class _HabitTrackerScreenState extends State<HabitTrackerScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
-            context: context, // Error BuildContext teratasi
+            context: context, //
             isScrollControlled: true,
             builder: (context) => Padding(
               padding: EdgeInsets.only(
